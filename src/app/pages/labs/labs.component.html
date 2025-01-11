@@ -1,0 +1,67 @@
+<h1>General</h1>
+<h2>{{title}}</h2>
+<div class="grid-container">
+
+  <div class="grid-item">
+    <h3>Ciclo for</h3>
+    <ul>
+      @for (task of tasks; track task; let i = $index) {
+        <li>
+          {{i}} - {{task}}
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="grid-item">
+    <h3>Variable Signal</h3>
+    <input type="text" [value]="name()" (change)="changeValue($event)">
+    <p>response: {{name()}}</p>
+  </div>
+
+  <div class="grid-item">
+    <h3>Ciclo signal</h3>
+    <ul>
+      @for (task of tasks2(); track task; let i = $index) {
+        <li>
+          {{i}} - {{task}}
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="grid-item">
+    <h3>FormControl</h3>
+    <input type="color" [formControl]="colorCtrl" />
+    <p> color: {{colorCtrl.value}}</p>
+  </div>
+
+  <div class="grid-item">
+    <h3>SVG</h3>
+    <svg>
+      <g>
+        <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="grid-item">
+    <h3>CSS width</h3>
+    <input type="number" [formControl]="widthCtrl" />
+    <span class="box" [style.width.px]="widthCtrl.value"> </span>
+  </div>
+
+  <div class="grid-item">
+    <h3>Error Message</h3>
+    <input type="text" [formControl]="nameCtrl" />
+    <span class="messageError" [class.show]="nameCtrl.invalid && nameCtrl.touched"> Mensaje Invalido</span>
+  </div>
+
+  <div class="grid-item">
+    <h3>Nueva sintaxis: <small>Si el input es "Mari" se mostrará</small></h3>
+    @if (name() == "Mari") {<p>El nombre ingresado es Mari</p>}
+    @else {<p>El nombre ingresado no es Mari</p>}
+
+  </div>
+
+</div>

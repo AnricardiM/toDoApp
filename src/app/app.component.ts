@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,5 +10,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'todoapp';
+  title = 'App To do';
+  
 }
