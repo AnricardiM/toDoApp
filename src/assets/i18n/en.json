@@ -1,0 +1,19 @@
+{
+    "english": "English",
+    "spanish": "Spanish",
+    "home": 
+    {
+        "title": "My Day",
+        "description": "All my tasks in one place",
+        "instruction": "Write your task and press enter",
+        "placeholder": "Type new todo",
+        "clear": "Clear task completed",
+        "oneItem": "item left",
+        "twoItem": "items left",
+        "buttons":{
+            "all": "All",
+            "pending": "Pending",
+            "completed": "Completed"
+        }   
+    }
+}

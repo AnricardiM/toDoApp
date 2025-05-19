@@ -1,11 +1,13 @@
+<app-buttons></app-buttons>
 <section class="todoapp">
   <header class="header">
     <div class="container">
-      <h2>My Day</h2>
-      <p>All my tasks in one place</p>
+      <h1>{{ 'home.title' |translate}} </h1>
+      <p>{{ 'home.description' |translate}} </p>
+       
       <input
         class="new-todo"
-        placeholder="Type new todo"
+        placeholder="{{'home.placeholder' |translate}}"
         autofocus
         type="text"
         [formControl] = "taskControl"
@@ -44,23 +46,35 @@
 
     <span class="todo-count">
       <strong>{{taskByFilter().length}}</strong> 
-      {{taskByFilter().length == 1? 'item left': 'items left'}}
+      <ng-container *ngIf="taskByFilter().length === 1; else multiple">
+      {{ 'home.oneItem' | translate }}
+    </ng-container>
+    <ng-template #multiple>
+      {{ 'home.twoItem' | translate }}
+    </ng-template>  
     </span>
 
     <ul class="filters">
       <li>
-        <a (click)="ChangeFilter('all')" [class.selected]="filter() === 'all'">All</a>
+        <a (click)="ChangeFilter('all')" [class.selected]="filter() === 'all'">
+          {{ 'home.buttons.all' |translate}}
+        </a>
       </li>
       <li>
-        <a (click)="ChangeFilter('pending')" [class.selected]="filter() === 'pending'" routerLink="/pending">Pending</a>
+        <a (click)="ChangeFilter('pending')" [class.selected]="filter() === 'pending'" routerLink="/pending">
+           {{ 'home.buttons.pending' |translate}}
+        </a>
       </li>
       <li>
-        <a (click)="ChangeFilter('completed')" [class.selected]="filter() === 'completed'" routerLink="/completed">Completed</a>
+        <a (click)="ChangeFilter('completed')" [class.selected]="filter() === 'completed'" routerLink="/completed">
+          {{ 'home.buttons.completed' |translate}}
+        </a>
       </li>
     </ul>
 
      @if(HaveCompleted() > 0){
-      <button (click)="ClearCompleted()" class="clear-completed">Clear completed</button>
+      <button (click)="ClearCompleted()" class="clear-completed">
+        {{ 'home.clear' |translate}}</button>
      }
     
   </footer>

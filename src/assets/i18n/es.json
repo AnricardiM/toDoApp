@@ -1,0 +1,19 @@
+{
+    "english": "Ingles",
+    "spanish": "Español",
+    "home": 
+        { 
+        "title": "Mi dia",
+        "description": "Todas mis tareas en un lugar",
+        "clear": "Limpiar tareas",
+        "placeholder": "Escribe una nueva tarea",
+        "instruction": "Escribe tu tarea y presiona la tecla Enter",
+        "oneItem": "item restante",
+        "twoItem": "items restantes",
+        "buttons":{
+            "all":"Todas",
+            "pending": "Pendientes",
+            "completed": "Completadas"
+        }
+    }
+}

@@ -1,56 +1,40 @@
-import { Component, signal, computed,effect,Injector, inject } from '@angular/core';
-
+import { Component, signal, computed,Injector, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Task } from '../../models/task.model';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { ButtonsComponent } from "../components/buttons/buttons.component";
+import { TaskService } from "../../service/task.service";
+import { TaskSyncService } from "../../service/taskSync.service";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule, ButtonsComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+    injector = inject(Injector);
+    taskService = inject(TaskService);
+    taskSyncService = inject(TaskSyncService);
+   
+//#region Variables
+tasks = this.taskService.tasks;
 
-  /*constructor(){
-    effect(() =>
-    {
-      const tasks = this.tasks();
-      localStorage.setItem('tasks',JSON.stringify(tasks));
-    }
-    );
-  }*/
-
-  ngOnInit(){
-    let storage = localStorage.getItem('tasks');
-     if(storage!= null){
-      const tasks = JSON.parse(storage);
-      this.tasks.set(tasks);
-     }
-   this.TrackerTask();
-  }
-
-  TrackerTask(){
-    effect(() =>
-      {
-        const tasks = this.tasks();
-        localStorage.setItem('tasks',JSON.stringify(tasks));
-      }, {injector: this.injector}
-      );
-  }
-
-  injector = inject(Injector);
-
-  taskControl = new FormControl('', 
+taskControl = new FormControl('', 
     {
       nonNullable:true, 
       validators:[
         Validators.required
       ]
     });
+//#endregion  
 
-  tasks =signal<Task[]>([]);
+  ngOnInit(){
+     const storedTasks = this.taskService.ChargeTask();
+    this.tasks.set(storedTasks);
+    this.taskSyncService.syncTasksToLocalStorage(this.tasks);
+  }
 
   filter = signal('all');
 
@@ -66,106 +50,52 @@ export class HomeComponent {
      return tasks.filter(x => x.completed);
 
      default:
-      return tasks;
-     
+      return tasks;     
     }
-
   });
 
-  HaveCompleted(): number {
-   return this.tasks().filter(x => x.completed).length;
+//#region Method
+ HaveCompleted(): number {
+    return this.tasks().filter(x => x.completed).length;
   }
 
-  ChangeInput(){
-   //const input = event.target as HTMLInputElement;
-   const response:boolean = this.Validation();
+  ClearCompleted() {
+    this.tasks.update((tasks) => tasks.filter((task) => !task.completed));
+  }
+
+  ChangeFilter(value: string) {
+    this.filter.set(value);
+  }
+
+ChangeInput(){
+   const response:boolean = this.taskService.Validation(this.taskControl);
    
    if(response){
     this.AddNewTask(this.taskControl.value);
     this.taskControl.setValue('');
    }
-   
-  //  input.value= "";
   }
 
-  AddNewTask(description: string){
-   const newTask: Task ={ 
-    id: Date.now(),
-    description: description,
-    completed:false
-   };
-    this.tasks.update((tasks) => [...tasks, newTask] );
-   
-  }
-
-  DeleteTask(index: number){   
-    this.tasks.update((tasks) => tasks.filter((tasks, position) => position !== index));   
-    
-  }
-
-  EditingTask(index:number){
-    this.tasks.update((tasks) => {
-      return tasks.map((task, position)=>{
-        if(position == index){
-            return {
-              ...task, 
-              editing: true
-            };
-        }
-        return {...task, editing:false};
-      });
-    });   
-   }
-
-   SaveEditedTask(index:number, event: Event){
-    const input = event.target as HTMLInputElement;
-    this.tasks.update((tasks) => {
-      return tasks.map((task, position)=>{
-        if(position == index){
-            return {
-              ...task, 
-              description: input.value,
-              editing:false
-            };
-        }
-        return task;
-      });
-    });   
-   }
-
-  UpdateTask(index:number){
-    this.tasks.update((tasks) => {
-      return tasks.map((task, position)=>{
-        if(position == index){
-            return {
-              ...task, 
-              completed: !task.completed
-            };
-        }
-        return task;
-      });
-    });   
-  }
-
-  ClearCompleted(){   
-    this.tasks
-    .update((tasks) => 
-      tasks.filter((tasks) => !tasks.completed));   
-    
-  }
-
-  Validation() : boolean {
-   
-    if(this.taskControl.value.trim().length>0)
-    if(this.taskControl.valid)
-      { return true;}  
-    return false;
-  }
-
-  ChangeFilter(value: string){
-    this.filter.set(value);
-  }
-
+AddNewTask(value: string ){
+  return this.taskService.AddNewTask(value);
 }
 
+EditingTask(index:number){
+  return this.taskService.EditingTask(index);
+}
 
+UpdateTask(index:number){
+  return this.taskService.UpdateTask(index);
+}
+
+DeleteTask(index:number){
+  return this.taskService.DeleteTask(index);
+}
+
+SaveEditedTask(index:number, event: Event){
+  return this.taskService.SaveEditedTask(index, event);
+}
+
+//#endregion
+
+}
