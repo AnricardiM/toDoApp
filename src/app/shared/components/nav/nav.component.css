@@ -1,0 +1,50 @@
+/* Nav container */
+nav {
+  background-color: #600465;
+  color:white;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Links dentro del nav */
+nav a {
+  color:white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Hover y foco */
+nav a:hover,
+nav a:focus {
+  background-color: #d678db;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Link activo - para destacar la página actual */
+nav a.active {
+  background-color:#c20ecb;
+  color: white;
+}
+
+.underline {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* Responsive: en pantallas pequeñas hacer nav vertical */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

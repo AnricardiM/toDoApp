@@ -1,19 +1,41 @@
 {
-    "english": "Ingles",
-    "spanish": "Español",
-    "home": 
+    "nav": 
         { 
-        "title": "Mi dia",
-        "description": "Todas mis tareas en un lugar",
-        "clear": "Limpiar tareas",
-        "placeholder": "Escribe una nueva tarea",
-        "instruction": "Escribe tu tarea y presiona la tecla Enter",
-        "oneItem": "item restante",
-        "twoItem": "items restantes",
-        "buttons":{
+        "title": "Mi vida organizada",
+        "menu1": "Inicio",       
+        "menu2": "Crear lista",
+        "menu3": "Editar lista"
+    },
+    "add": 
+        { 
+        "title": "Crear tareas",
+        "placeholder": "Nombre de lista",
+        "button":{
+            "save": "Guardar"
+        }
+        },
+    "show": 
+        { 
+        "title": "Listado de tareas"       
+    },
+    "edit": 
+        { 
+       "title": "Editar tareas",
+        "placeholder": "Nombre de lista",       
+         "button":{
+            "save": "Guardar"
+        }
+    },
+    "task": 
+        { 
+       "title": "Listado de tareas",
+        "placeholder": "Nombre de tarea",     
+        "button":{
+            "new": "Agregar",
             "all":"Todas",
             "pending": "Pendientes",
-            "completed": "Completadas"
+            "completed": "Completadas",
+            "clear": "Limpiar tareas"
         }
     }
 }

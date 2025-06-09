@@ -1,0 +1,25 @@
+ 
+<div class="flex">
+<div class="list">
+       <h1>{{'edit.title' | translate }} </h1>
+     <div style="display: inline;">
+        <label>List: </label>
+        <span *ngIf="!wantEdit" class=""> {{list?.title}}</span>
+        <input *ngIf="wantEdit" data-class="Input" [(ngModel)]="newTaskTitle" placeholder="{{'edit.placeholder' | translate }}" />
+        <button *ngIf="!wantEdit" class="edit" (click)="editing()">✏️</button>        
+    </div>
+ 
+    <app-task 
+    [listTask]="list.listTask"
+    (listTaskChange)="listTaskChanged($event)"
+    ></app-task>
+
+ <button class="modify" (click)="edit()">{{'edit.button.save' | translate }}✔️</button>
+
+<p *ngIf="mensaje" style="color: green; font-weight: bold;">
+  {{ mensaje }}
+</p>
+</div>
+</div>
+
+

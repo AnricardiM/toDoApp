@@ -1,0 +1,10 @@
+<nav>
+  <a routerLink="" > {{'nav.title' | translate}}</a>
+   |
+  <a routerLink="/Add" routerLinkActive="active" >{{'nav.menu2' | translate}}</a>
+  <a routerLink="/Edit" routerLinkActive="active" >{{'nav.menu3' | translate}}</a>
+  |
+  <a [class.underline]="currentLang =='en'" (click)="switchLanguage('en')" >🇺🇸</a>
+  <a [class.underline]="currentLang =='es'" (click)="switchLanguage('es')">🇪🇸</a>
+</nav>
+<router-outlet />

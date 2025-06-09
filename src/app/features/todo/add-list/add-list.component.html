@@ -1,0 +1,18 @@
+ <div class="flex">
+ <div class="list">
+        <h1> {{'add.title' | translate }} </h1>
+       <div style="display: inline;">
+        <label>List: </label>    
+        <input data-class="Input" [(ngModel)]="newTaskTitle" placeholder="{{'add.placeholder' | translate }}" />      
+    </div>
+ 
+    <app-task 
+    [listTask]="list.listTask"
+    (listTaskChange)="listTaskChanged($event)"
+    ></app-task>
+    <button class="modify" (click)="save()">{{'add.button.save' | translate }}✔️</button>
+    <p *ngIf="mensaje" style="color: green; font-weight: bold;">
+    {{ mensaje }}
+    </p>
+</div>
+</div>

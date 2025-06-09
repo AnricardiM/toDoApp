@@ -1,0 +1,19 @@
+  
+  .floating-btn {
+  position: fixed;             /* Fija el botón en una posición específica de la pantalla */
+  bottom: 20px;                /* Distancia desde el borde inferior de la pantalla */
+  right: 20px;                 /* Distancia desde el borde derecho de la pantalla */
+  padding: 15px 20px;          /* Espaciado dentro del botón */
+  background-color: #007BFF;   /* Color de fondo (puedes cambiarlo) */
+  color: white;                /* Color del texto */
+  border: none;                /* Sin borde */
+  border-radius: 50%;          /* Botón redondeado */
+  font-size: 24px;             /* Tamaño de la fuente */
+  cursor: pointer;             /* Cambia el cursor a pointer cuando se pasa sobre el botón */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Sombra para dar efecto de flotante */
+  transition: background-color 0.3s ease;   /* Transición suave para el cambio de color */
+}
+
+.floating-btn:hover {
+  background-color: #0056b3;  /* Cambia el color de fondo cuando se pasa el ratón */
+}

@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withComponentInputBinding, withPreloading } from '@angular/router';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -11,7 +11,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules)),
     provideHttpClient(),
     provideTranslateService({
       loader: {

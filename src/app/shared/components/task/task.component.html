@@ -1,0 +1,31 @@
+<div class="app-task">
+   <h2>{{'task.title' | translate }} </h2>
+    <div style="display: inline;">
+        <label>Task: </label>
+        <input data-class="Input" [(ngModel)]="newTaskTitle" placeholder="{{'task.placeholder' | translate }}" />
+        <button class="modify" (click)="add()">{{'task.button.new' | translate }} ➕</button>
+    </div>
+      
+    <ul>
+      <li *ngFor="let task of filterListTask">
+        <input
+          type="checkbox"
+          [checked]="task.completed"
+          (change)="toggle(task.id)"
+        />
+        <span [style.text-decoration]="task.completed ? 'line-through' : 'none'"  *ngIf="!task?.editing">
+          {{ task.title }}
+        </span> 
+        <input data-class="Input" [(ngModel)]="task.title" placeholder="{{'task.placeholder' | translate }}" *ngIf="task?.editing" />        
+        <button class="edit" (click)="editing(task.id)"  *ngIf="!task?.editing" >✏️</button>
+        <button class="modify" (click)="edit(task.id)"  *ngIf="task?.editing" >✔️</button>
+        <button class="remove" (click)="remove(task.id)">🗑️</button>
+      </li>
+    </ul>
+        <div class="buttonFilter" *ngIf="listTask.length > 0">
+       <button class="filter" (click)="filter('all')">{{'task.button.all' | translate }}</button>
+       <button class="filter" (click)="filter('pending')">{{'task.button.pending' | translate }}</button>
+       <button class="filter" (click)="filter('completed')">{{'task.button.completed' | translate }}</button>
+       <button class="filter" (click)="filter('clear')">{{'task.button.clear' | translate }}</button>
+    </div>
+</div>

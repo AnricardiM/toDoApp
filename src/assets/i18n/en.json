@@ -1,19 +1,42 @@
 {
-    "english": "English",
-    "spanish": "Spanish",
-    "home": 
-    {
-        "title": "My Day",
-        "description": "All my tasks in one place",
-        "instruction": "Write your task and press enter",
-        "placeholder": "Type new todo",
-        "clear": "Clear task completed",
-        "oneItem": "item left",
-        "twoItem": "items left",
-        "buttons":{
+    "nav": 
+        { 
+        "title": "My organizated life",
+        "menu1": "Home",       
+        "menu2": "Create List",
+        "menu3": "Edit List"
+    },
+    "add": 
+        { 
+        "title": "Create list",
+        "placeholder": "Name list" ,   
+       "button":{
+            "save": "Save"
+        }
+    },
+    "show": 
+        { 
+        "title": "All lists"       
+     },
+    "edit": 
+        { 
+       "title": "Edit task",
+        "placeholder": "Name list",      
+         "button":{
+            "save": "Save"
+        }
+    },
+    "task": 
+        { 
+       "title": "Task's list",
+        "placeholder": "Name task",       
+        "menu2": "Otro menu",
+        "button":{
+            "new": "Add",
             "all": "All",
             "pending": "Pending",
-            "completed": "Completed"
-        }   
+            "completed": "Completed",
+            "clear": "Clear task completed"
+        }
     }
 }
